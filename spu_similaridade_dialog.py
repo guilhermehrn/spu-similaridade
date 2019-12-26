@@ -26,6 +26,7 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
+from qgis.core import QgsProject
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -33,7 +34,8 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
 
 
 class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
-    def __init__(self, parent=None):
+
+    def __init__ (self, iface, parent=None):
         """Constructor."""
         super(SpuSimilaridadeDialog, self).__init__(parent)
         # Set up the user interface from Designer through FORM_CLASS.
@@ -42,3 +44,17 @@ class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
+
+        self.iface = iface
+
+        layers = QgsProject.instance().layerTreeRoot().findLayers()
+        layer_list = []
+
+        for layer in layers:
+            layer_list.append(layer.name())
+
+        self.camada1.addItems(layer_list)
+        self.camada2.addItems(layer_list)
+
+
+
