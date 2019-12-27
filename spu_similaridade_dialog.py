@@ -27,7 +27,9 @@ import os
 from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 from qgis.core import QgsProject
-from .biblioteca_geometria import BilbiotecaGeometria
+from .biblioteca_geometria import *
+
+import shapely.wkt
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'spu_similaridade_dialog_base.ui'))
@@ -51,7 +53,7 @@ class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
         self.tuplaCamadaSelecionada1 = (0,'')
         self.tuplaCamadaSelecionada2 = (0,'')
 
-        self.csi.clicked.connect(self.calcularSimilaridade)
+        self.calcular.clicked.connect(self.calcularSimilaridade)
 
         layers = QgsProject.instance().layerTreeRoot().findLayers()
 
@@ -69,12 +71,23 @@ class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
         self.tuplaCamadaSelecionada1 = (self.camada1.currentIndex(), self.camada1.currentText())
         self.tuplaCamadaSelecionada2 = (self.camada2.currentIndex(), self.camada2.currentText())
 
-        layerObj1 = self.iface.mapCanvas().layer(self.tuplaCamadaSelecionada1[0]-1)
-        layerObj2 = self.iface.mapCanvas().layer(self.tuplaCamadaSelecionada2[0])
+        qlayerGeo1 = self.iface.mapCanvas().layer(self.tuplaCamadaSelecionada1[0]).getFeature(0).geometry().asWkt()
+        qlayerGeo2 = self.iface.mapCanvas().layer(self.tuplaCamadaSelecionada2[0]).getFeature(0).geometry().asWkt()
 
-        csi = BilbiotecaGeometria.csi(self,layerObj1, layerObj2)
 
-        print (csi, self.tuplaCamadaSelecionada1, layerObj1, layerObj2)
+        libGeometria = BibliotecaGeometria()
+
+        layerObj1 = shapely.wkt.loads(qlayerGeo1)
+        layerObj2 = shapely.wkt.loads(qlayerGeo2)
+
+        csi = libGeometria.csi(layerObj1, layerObj2)
+        mre = libGeometria.mre(layerObj1, layerObj2)
+
+        self.textBrowser.insertPlainText(str(csi * 100) + "%")
+        self.textBrowser_2.insertPlainText(str(mre))
+
+
+        #print (csi, self.tuplaCamadaSelecionada1, layerObj1, layerObj2)
 
 
 
