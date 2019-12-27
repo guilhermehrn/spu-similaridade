@@ -2,33 +2,34 @@
 
 from shapely.geometry import *
 from pylab import *
+
 class BilbiotecaGeometria:
 
-    def uniao(obj1, obj2):
+    def uniao(self, obj1, obj2):
         return obj1.union(obj2)
 
-    def intersecao(obj1, obj2):
+    def intersecao(self, obj1, obj2):
         return obj1.intersection(obj2)
 
-    def calculoArea(obj):
+    def calculoArea(self, obj):
         return obj.area
 
-    def listarCoordenadas(obj):
+    def listarCoordenadas(self, obj):
         return list(obj.exterior.coords)
 
-    def envelope(obj):
+    def envelope(self,obj):
         return obj.bounds
 
-    def fechoConvexo(obj):
+    def fechoConvexo(self,obj):
         return obj.convex_hull
 
-    def delaunay(obj):
+    def delaunay(self,obj):
         return triangulate(obj)
 
-    def csi(obj_1, obj_2):
-        return calculo_area(intersecao(obj_1, obj_2)) / calculo_area(uniao(obj_1, obj_2))
+    def csi(self, obj_1, obj_2):
+        return self.calculoArea(self.intersecao(obj_1, obj_2)) / self.calculoArea(self.uniao(obj_1, obj_2))
 
     def mre(obj_1, obj_2):
         P = obj_1.length - obj_2.length
-        S = calculo_area(uniao(obj_1, obj_2)) - calculo_area(intersecao(obj_1, obj_2))
+        S = calculoArea(uniao(obj_1, obj_2)) - calculoArea(intersecao(obj_1, obj_2))
         return abs((-S + sqrt(S*S - 4* P))/2)
