@@ -83,6 +83,9 @@ class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
         csi = libGeometria.csi(layerObj1, layerObj2)
         mre = libGeometria.mre(layerObj1, layerObj2)
 
+        self.textBrowser.clear()
+        self.textBrowser_2.clear()
+
         self.textBrowser.insertPlainText(str(csi * 100) + "%")
         self.textBrowser_2.insertPlainText(str(mre))
 
