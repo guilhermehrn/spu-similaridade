@@ -55,7 +55,9 @@ class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
 
         self.calcular.clicked.connect(self.calcularSimilaridade)
 
-        layers = QgsProject.instance().layerTreeRoot().findLayers()
+        #layers = QgsProject.instance().layerTreeRoot().findLayers()
+
+        #layers = iface.mapCanvas().layers()
 
         layer_list = []
 
