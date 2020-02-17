@@ -41,6 +41,7 @@ class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
         """Constructor."""
 
         super(SpuSimilaridadeDialog, self).__init__(parent)
+
         # Set up the user interface from Designer through FORM_CLASS.
         # After self.setupUi() you can access any designer object by doing
         # self.<objectname>, and you can use autoconnect slots - see
@@ -50,6 +51,7 @@ class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
 
         self.iface = iface
 
+
         self.tuplaCamadaSelecionada1 = (0,'')
         self.tuplaCamadaSelecionada2 = (0,'')
 
@@ -57,8 +59,10 @@ class SpuSimilaridadeDialog(QtWidgets.QDialog, FORM_CLASS):
 
         #layers = QgsProject.instance().layerTreeRoot().findLayers()
 
-        #layers = iface.mapCanvas().layers()
 
+
+        layers = iface.mapCanvas().layers()
+        #print(layers)
         layer_list = []
 
         for layer in layers:
