@@ -5,12 +5,12 @@
 [general]
 name=SPU Similaridade
 qgisMinimumVersion=3.0
-description=Análise de Similaridade 
+description=Calculates the Geographic Similarity Index (GIS) of similarity and the Equivalent Rectangle Method (ERM).
 version=0.1
 author=SPU
-email=guilherme@dcc.ufmg.br
+email=guilherme.nascimento@planejamento.gov.br
 
-about=Provide a brief description of the plugin and its purpose.
+about=Calculates the Geographical Similarity Index (GSI) of similarity and the Equivalent Rectangle Method (ERM) between two polygons of different layers.
 
 tracker=http://bugs
 repository=https://github.com/guilhermehrn/spu-analise.git

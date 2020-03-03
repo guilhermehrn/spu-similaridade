@@ -43,7 +43,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Índice de Similaridade Geográfica (CSI):  </string>
+        <string>Índice de Similaridade Geográfica (ISG):  </string>
        </property>
       </widget>
      </item>
