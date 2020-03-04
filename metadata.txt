@@ -13,7 +13,7 @@ email=guilherme.nascimento@planejamento.gov.br
 about=Calculates the Geographical Similarity Index (GSI) of similarity and the Equivalent Rectangle Method (ERM) between two polygons of different layers.
 
 tracker=http://bugs
-repository=https://github.com/guilhermehrn/spu-analise.git
+repository=https://github.com/guilhermehrn/spu-similaridade.git
 # End of mandatory metadata
 
 # Recommended items:
